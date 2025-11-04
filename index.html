@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link:hover {
+            background-color: #34495e;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .headshot {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .video-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .hobbies-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .placeholder-text {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to My Personal Page</h1>
+    </div>
+    
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="hobbies.html" class="nav-link">Hobbies</a>
+            <a href="discover.html" class="nav-link">Discover</a>
+            <a href="resume.html" class="nav-link">Resume</a>
+            <a href="career.html" class="nav-link">Career</a>
+            <a href="game.html" class="nav-link">Game</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="profile-section">
+            <img src="IMG_2688.jpg" alt="Professional Headshot" class="headshot">
+            <div class="intro-text">
+                <h2>About Me</h2>
+                <p>I'm someone who enjoys meeting new people, always eager to embrace new activities, challenges, and environments. Currently, I'm pursuing my studies in accounting as a major and Spanish as a minor. My professional interests revolve around the overall structures of companies, with a particular focus on organizational structures and financial expenditures.</p>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2>Welcome Video</h2>
+            <div class="video-container">
+                <p class="placeholder-text">Add your welcome video here</p>
+                <!-- Replace the placeholder text with your video element:
+                <video controls>
+                    <source src="path-to-your-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video> -->
+            </div>
+        </section>
+
+        <section class="hobbies-section">
+            <div class="hobby-card">
+                <h2>Rock Climbing</h2>
+                <img src="20250426_114712.JPG" alt="Rock Climbing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                <p>My most physically demanding hobby is rock climbing. It keeps me the most physically fit and most active to support my physical health. Rock climbing is something I learned to enjoy once getting into University. It's something I've kept up with weekly and I have the most fun with it.</p>
+            </div>
+
+            <div class="hobby-card">
+                <h2>Fishing</h2>
+                <img src="Screenshot 2025-10-28 122428.png" alt="Fishing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                <p>Fishing is something I learned to enjoy during sophomore year of high school. It's a hobby that is very easy to do by yourself when you have free time as well as with friends and family. Fishing is something everybody can learn to enjoy. Most likely the reason I'm so drawn to fishing is because I can fish with anyone.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
