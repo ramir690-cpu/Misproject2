@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link:hover {
+            background-color: #34495e;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .game-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        #game-container {
+            margin: 2rem 0;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #score {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="hobbies.html" class="nav-link">Hobbies</a>
+            <a href="discover.html" class="nav-link">Discover</a>
+            <a href="resume.html" class="nav-link">Resume</a>
+            <a href="career.html" class="nav-link">Career</a>
+            <a href="game.html" class="nav-link">Game</a>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Memory Game</h1>
+    </div>
+
+    <div class="container">
+        <div class="game-section">
+            <h2>Test Your Memory!</h2>
+            <p>Click 'Start Game' to begin. Remember the sequence and repeat it!</p>
+            <div id="game-container">
+                <div id="score">Score: 0</div>
+                <button id="start-btn">Start Game</button>
+                <div id="buttons-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const colors = ['red', 'blue', 'green', 'yellow'];
+        let sequence = [];
+        let playerSequence = [];
+        let score = 0;
+
+        document.getElementById('start-btn').addEventListener('click', startGame);
+
+        function startGame() {
+            sequence = [];
+            playerSequence = [];
+            score = 0;
+            document.getElementById('score').textContent = `Score: ${score}`;
+            nextRound();
+        }
+
+        function nextRound() {
+            sequence.push(colors[Math.floor(Math.random() * colors.length)]);
+            playSequence();
+        }
+
+        function playSequence() {
+            let i = 0;
+            const interval = setInterval(() => {
+                highlightButton(sequence[i]);
+                i++;
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        enablePlayerInput();
+                    }, 1000);
+                }
+            }, 1000);
+        }
+
+        function highlightButton(color) {
+            const button = document.createElement('button');
+            button.style.backgroundColor = color;
+            button.style.width = '100px';
+            button.style.height = '100px';
+            document.getElementById('buttons-container').innerHTML = '';
+            document.getElementById('buttons-container').appendChild(button);
+            setTimeout(() => {
+                button.style.backgroundColor = '#ccc';
+            }, 500);
+        }
+
+        function enablePlayerInput() {
+            const buttonsContainer = document.getElementById('buttons-container');
+            buttonsContainer.innerHTML = '';
+            
+            colors.forEach(color => {
+                const button = document.createElement('button');
+                button.style.backgroundColor = color;
+                button.style.width = '100px';
+                button.style.height = '100px';
+                button.addEventListener('click', () => handlePlayerInput(color));
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+        function handlePlayerInput(color) {
+            playerSequence.push(color);
+            highlightButton(color);
+
+            if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
+                alert('Game Over! Your score: ' + score);
+                document.getElementById('buttons-container').innerHTML = '';
+                return;
+            }
+
+            if (playerSequence.length === sequence.length) {
+                score++;
+                document.getElementById('score').textContent = `Score: ${score}`;
+                playerSequence = [];
+                setTimeout(nextRound, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
